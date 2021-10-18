@@ -1,14 +1,20 @@
-  <h1>{{name}}</h1>
-  <div>
-    <p>Capital: {{capital}}</p>
-    <p>Population: {{population}}</p>
-    <p>Languages:</p>
-    <ul>
-      {{#each languages}}
-      <li>{{name}}</li>
-      {{/each}}
-    </ul>
+{{#each this}}
+<div class="wrapper">
+  <h1 class="card__name">{{name}}</h1>
+  <div class="card">
+    <div class="card__description">
+      <p class="card__text">Capital: <span class="card__text-wrapper">{{capital}}</span></p>
+      <p class="card__text">Population: <span class="card__text-wrapper">{{population}}</span></p>
+      <p class="card__text">Languages:</p>
+      <ul class="card__text card__list">
+        {{#each languages}}
+        <li class="card__item"><span class="card__text-wrapper">{{name}}</span></li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="card__image-wrapper">
+      <img src="{{flag}}" alt="{{name}}" class="card__image" />
+    </div>
   </div>
-  <div>
-    <img src="{{flag}}" alt="{{name}}" />
-  </div>
+</div>
+  {{/each}}
