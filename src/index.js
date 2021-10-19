@@ -5,9 +5,8 @@ import refs from "./js/refs";
 import { myNotice, myError } from "./js/pnotify";
 
 let debounce = require("lodash.debounce");
-console.dir(refs.input);
 
-refs.input.addEventListener("input", debounce(onInputChange, 500));
+refs.input.addEventListener("input", debounce(onInputChange, 1000));
 
 function onInputChange(evt) {
   evt.preventDefault();
@@ -37,6 +36,10 @@ function renderCountryCard(country) {
 function renderCountryList(country) {
   const markup = countryList(country);
   refs.container.insertAdjacentHTML("beforeend", markup);
+
+  document
+    .querySelector(".countries-list")
+    .addEventListener("click", onCounryListClick);
 }
 
 function onFetchError(error) {
@@ -46,4 +49,11 @@ function onFetchError(error) {
 function onInputClear() {
   refs.input.value = "";
   refs.container.innerHTML = "";
+}
+
+function onCounryListClick(e) {
+  if (e.target.nodeName !== "LI") {
+    return;
+  }
+  API.fetchCountry(e.target.textContent).then(onCountrySearch);
 }
