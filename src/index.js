@@ -10,8 +10,8 @@ refs.input.addEventListener("input", debounce(onInputChange, 1000));
 
 function onInputChange(evt) {
   evt.preventDefault();
-  const searchQuery = evt.target.value;
 
+  const searchQuery = evt.target.value;
   API.fetchCountry(searchQuery).then(onCountrySearch).catch(onFetchError);
 }
 
@@ -39,7 +39,7 @@ function renderCountryList(country) {
 
   document
     .querySelector(".countries-list")
-    .addEventListener("click", onCounryListClick);
+    .addEventListener("click", onCountryListClick);
 }
 
 function onFetchError(error) {
@@ -51,7 +51,7 @@ function onInputClear() {
   refs.container.innerHTML = "";
 }
 
-function onCounryListClick(e) {
+function onCountryListClick(e) {
   if (e.target.nodeName !== "LI") {
     return;
   }
